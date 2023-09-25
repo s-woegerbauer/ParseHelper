@@ -1,0 +1,15 @@
+D:\ParseHelper\ParseHelper\bin\Debug\net6.0\ParseHelper.exe
+D:\ParseHelper\ParseHelper\bin\Debug\net6.0\ParseHelper.deps.json
+D:\ParseHelper\ParseHelper\bin\Debug\net6.0\ParseHelper.runtimeconfig.json
+D:\ParseHelper\ParseHelper\bin\Debug\net6.0\ParseHelper.dll
+D:\ParseHelper\ParseHelper\bin\Debug\net6.0\ParseHelper.pdb
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.csproj.AssemblyReference.cache
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.GeneratedMSBuildEditorConfig.editorconfig
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.AssemblyInfoInputs.cache
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.AssemblyInfo.cs
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.csproj.CoreCompileInputs.cache
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.dll
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\refint\ParseHelper.dll
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.pdb
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ParseHelper.genruntimeconfig.cache
+D:\ParseHelper\ParseHelper\obj\Debug\net6.0\ref\ParseHelper.dll
