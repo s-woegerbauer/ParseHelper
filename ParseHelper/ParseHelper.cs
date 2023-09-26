@@ -10,6 +10,44 @@ namespace ParseHelper
 {
     public static class ParseHelper
     {
+        public static class Tuples
+        {
+            /// <summary>
+            /// Parses a string into a Tuple with two items
+            /// </summary>
+            /// <typeparam name="T1"></typeparam>
+            /// <param name="input"></param>
+            /// <param name="splitter"></param>
+            /// <returns></returns>
+            /// <exception cref="ArgumentException"></exception>
+            public static Tuple<T1, T2> ParseTuple<T1, T2>(string input, string splitter)
+            {
+                var parts = input.Split(splitter);
+                if (parts.Length != 2)
+                    throw new ArgumentException("Input string does not match the expected format.");
+
+                return new Tuple<T1, T2>(Help.ConvertValue<T1>(parts[0]), Help.ConvertValue<T2>(parts[1]));
+            }
+
+            /// <summary>
+            /// Parses a string into a Tuple with three items
+            /// </summary>
+            /// <typeparam name="T1"></typeparam>
+            /// <typeparam name="T2"></typeparam>
+            /// <typeparam name="T3"></typeparam>
+            /// <param name="input"></param>
+            /// <returns></returns>
+            /// <exception cref="ArgumentException"></exception>
+            public static Tuple<T1, T2, T3> ParseTuple<T1, T2, T3>(string input, string splitter)
+            {
+                var parts = input.Split(splitter);
+                if (parts.Length != 3)
+                    throw new ArgumentException("Input string does not match the expected format.");
+
+                return new Tuple<T1, T2, T3>(Help.ConvertValue<T1>(parts[0]), Help.ConvertValue<T2>(parts[1]), Help.ConvertValue<T3>(parts[2]));
+            }
+        }
+
         public static class Advanced
         {
 
@@ -249,6 +287,17 @@ namespace ParseHelper
                 }
 
                 return max;
+            }
+
+            /// <summary>
+            /// Converts a value into the correct type
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="value"></param>
+            /// <returns></returns>
+            internal static T ConvertValue<T>(string value)
+            {
+                return (T)Convert.ChangeType(value, typeof(T));
             }
         }
     }
