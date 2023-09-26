@@ -10,18 +10,98 @@ namespace ParseHelper
 {
     public static class ParseHelper
     {
+        public static class Advanced
+        {
+
+        }
+
         public static class Simple
         {
+            /// <summary>
+            /// Parses a line to a list
+            /// One split is one item
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="line"></param>
+            /// <returns name="result"></returns>
+            public static List<T> LineToListWithSplit<T>(string line, string splitter)
+            {
+                List<T> result = new();
+
+                for (int i = 0; i < line.Split(splitter).Length; i++)
+                {
+                    result.Add(Help.ParseLine<T>(line.Split(splitter)[i]));
+                }
+
+                return result;
+            }
+
+            /// <summary>
+            /// Parses a line to a list
+            /// One char is one item
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="line"></param>
+            /// <returns name="result"></returns>
+            public static List<T> LineToList<T>(string line)
+            {
+                List<T> result = new();
+
+                for (int i = 0; i < line.Length; i++)
+                {
+                    result.Add(Help.ParseLine<T>(line[i].ToString()));
+                }
+
+                return result;
+            }
+
+            /// <summary>
+            /// Parses a line to an one dimensional Array
+            /// One char is one item
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="line"></param>
+            /// <returns name="result"></returns>
+            public static T[] LineToOneDimensionalArray<T>(string line)
+            {
+                T[] result = new T[line.Length];
+
+                for (int i = 0; i < line.Length; i++)
+                {
+                    result[i] = Help.ParseLine<T>(line[i].ToString());
+                }
+
+                return result;
+            }
+
+            /// <summary>
+            /// Parses a line to an one dimensional Array
+            /// One split is one item
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="line"></param>
+            /// <returns name="result"></returns>
+            public static T[] LineToOneDimensionalArrayWithSplit<T>(string line, string splitter) 
+            {
+                T[] result = new T[line.Length];
+
+                for(int i = 0; i < line.Split(splitter).Length; i++)
+                {
+                    result[i] = Help.ParseLine<T>(line.Split(splitter)[i]);
+                }
+
+                return result;
+            }
+
             /// <summary>
             /// Converts a file to an one dimensional Array
             /// Each line is one item
             /// </summary>
             /// <typeparam name="T"></typeparam>
-            /// <param name="inputPath"></param>
-            /// <returns></returns>
-            public static T[] LinesToOneDimensionalArray<T>(string inputPath)
+            /// <param name="lines"></param>
+            /// <returns name="result"></returns>
+            public static T[] LinesToOneDimensionalArray<T>(string[] lines)
             {
-                string[] lines = File.ReadAllLines(inputPath);
                 T[] result = new T[lines.Length];
 
                 for (int i = 0; i < lines.Length; i++)
@@ -38,12 +118,11 @@ namespace ParseHelper
             /// Each split in a row is an item
             /// </summary>
             /// <typeparam name="T"></typeparam>
-            /// <param name="inputPath"></param>
+            /// <param name="lines"></param>
             /// <param name="splitter"></param>
-            /// <returns></returns>
-            public static T[,] LinesToTwoDimensionalArray<T>(string inputPath, char splitter)
+            /// <returns name="result"></returns>
+            public static T[,] LinesToTwoDimensionalArrayWithSplitter<T>(string[] lines, string splitter)
             {
-                string[] lines = File.ReadAllLines(inputPath);
                 int maxLength = Help.GetMaxLengthOfSplit(lines, splitter);
                 T[,] result = new T[lines.Length, maxLength];
 
@@ -67,7 +146,38 @@ namespace ParseHelper
                 return result;
             }
 
+            /// <summary>
+            /// Converts a file to an two dimensional Array
+            /// Each line is one row
+            /// Each char in a row is an item
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="lines"></param>
+            /// <returns name="result"></returns>
+            public static T[,] LinesToTwoDimensionalArray<T>(string[] lines)
+            {
+                int maxLength = Help.GetMaxLengthOfLine(lines);
+                T[,] result = new T[lines.Length, maxLength];
 
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string line = lines[i];
+
+                    for (int j = 0; j < maxLength; j++)
+                    {
+                        if (line.Length > j)
+                        {
+                            result[i, j] = Help.ParseLine<T>(lines[i][j].ToString());
+                        }
+                        else
+                        {
+                            result[i, j] = default;
+                        }
+                    }
+                }
+
+                return result;
+            }
         }
 
         internal static class Help
@@ -100,7 +210,13 @@ namespace ParseHelper
                 }
             }
 
-            internal static int GetMaxLengthOfSplit(string[] input, char splitter)
+            /// <summary>
+            /// Gets the longest length of multiple line.Split()
+            /// </summary>
+            /// <param name="input"></param>
+            /// <param name="splitter"></param>
+            /// <returns name="max"></returns>
+            internal static int GetMaxLengthOfSplit(string[] input, string splitter)
             {
                 int max = 0;
 
@@ -109,6 +225,26 @@ namespace ParseHelper
                     if(line.Split(splitter).Length >= max)
                     {
                         max = line.Split(splitter).Length;
+                    }
+                }
+
+                return max;
+            }
+
+            /// <summary>
+            /// Gets the longest length of lines
+            /// </summary>
+            /// <param name="input"></param>
+            /// <returns></returns>
+            internal static int GetMaxLengthOfLine(string[] input)
+            {
+                int max = 0;
+
+                foreach (string line in input)
+                {
+                    if (line.Length >= max)
+                    {
+                        max = line.Length;
                     }
                 }
 

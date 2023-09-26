@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nP+U6Qfhy0Y1+J5NwExDeVg3KCczL7siAP3uIPby+hSqgRPvGiwys39dDkVEHw2do0IU2T2w2eeUJUE8An2+Zw==",
+  "dgSpecHash": "UlivpDcxFuVUhN+Za8R2vtFSdk6GZz1M+8ZtYaCUU+b7eOj7WhRZqACCWGviWW7RwslwtEOX1nz+A7EiPLvpZg==",
   "success": true,
-  "projectFilePath": "D:\\ParseHelper\\ParseHelper\\ParseHelper.csproj",
+  "projectFilePath": "D:\\GitHub\\ParseHelper\\ParseHelper\\ParseHelper.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
